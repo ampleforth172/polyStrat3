@@ -1,0 +1,25 @@
+2026-07-13T13:15:00.918010Z  INFO BTC=62518.01 depth open=62518.01 tte=899.1s | quote bid=---- fair=0.5000 ask=---- | market bid=---- ask=---- pos=0.00@0.0000 || NO pos=0.00@0.0000
+2026-07-13T13:15:00.918028Z  INFO [ORDER] [quote-bid] BUY 5.4 YES @ 0.4500
+2026-07-13T13:15:00.918031Z  INFO [ORDER] [quote-bid] BUY 5.4 NO @ 0.4500
+2026-07-13T13:15:00.918042Z  INFO [FEED] clob market ws connected
+2026-07-13T13:15:01.416017Z  INFO [USER-WS] order 0xbf777d57… Some(Placement) Buy Some(5.4) @ 0.45 matched=0
+2026-07-13T13:15:01.428551Z  INFO [USER-WS] order 0xa7ae3a49… Some(Placement) Buy Some(5.4) @ 0.45 matched=0
+2026-07-13T13:15:01.437484Z  INFO BTC=62518.01 depth open=62518.01 tte=898.6s | quote bid=0.4500 fair=0.5000 ask=0.5500 | market bid=0.5300 ask=0.5400 pos=0.00@0.0000 || NO pos=0.00@0.0000
+2026-07-13T13:15:02.439809Z  INFO latency: dispatch[n=48 p50<8.2µs p90<16.4µs p99<65.5µs p99.9<65.5µs max=42.5µs] decision[n=62 p50<8.2µs p90<8.2µs p99<2.10ms p99.9<2.10ms max=1.31ms] tick_to_order[n=1 p50<8.2µs p90<8.2µs p99<8.2µs p99.9<8.2µs max=4.3µs] journal[n=0]
+2026-07-13T13:15:02.439841Z  INFO BTC=62518.01 depth open=62518.01 tte=897.6s | quote bid=0.4500 fair=0.5000 ask=0.5500 | market bid=0.5300 ask=0.5400 pos=0.00@0.0000 || NO pos=0.00@0.0000
+2026-07-13T13:15:03.437808Z  INFO BTC=62518.01 depth open=62518.01 tte=896.6s | quote bid=0.4500 fair=0.5000 ask=0.5500 | market bid=0.5300 ask=0.5400 pos=0.00@0.0000 || NO pos=0.00@0.0000
+2026-07-13T13:15:04.437279Z  INFO BTC=62518.01 depth open=62518.01 tte=895.6s | quote bid=0.4500 fair=0.5000 ask=0.5500 | market bid=0.5300 ask=0.5400 pos=0.00@0.0000 || NO pos=0.00@0.0000
+^C2026-07-13T13:15:05.353218Z  INFO shutdown signal — cancelling all open orders
+2026-07-13T13:15:05.650640Z  INFO all orders cancelled at the exchange
+2026-07-13T13:15:05.651303Z  INFO PnL appended to output/btc_trader_pnl.txt
+2026-07-13T13:15:05.651333Z  INFO window latency: dispatch[n=128 p50<8.2µs p90<16.4µs p99<32.8µs p99.9<65.5µs max=42.5µs] decision[n=171 p50<8.2µs p90<16.4µs p99<262.1µs p99.9<2.10ms max=1.31ms] tick_to_order[n=1 p50<8.2µs p90<8.2µs p99<8.2µs p99.9<8.2µs max=4.3µs] journal[n=0]
+2026-07-14T15:14:33.658704Z  INFO vol override active: 35.0% annualized (rolling/historical vol ignored)
+2026-07-14T15:14:33.770019Z  INFO open price seeded: 1784041200 64305.01
+2026-07-14T15:14:33.770049Z  INFO active market: btc-updown-15m-1784041200 end=2026-07-14T15:15:00Z (yes=23819012… no=58206740…)
+2026-07-14T15:14:33.770096Z  INFO BTC=n/a n/a open=64305.01 tte=26.2s [CUTOFF] | quote bid=---- fair=n/a ask=---- | market bid=---- ask=---- pos=0.00@0.0000 || NO pos=0.00@0.0000
+2026-07-14T15:14:33.919464Z  INFO [BINANCE-WS] connected, streams subscribed via URL: wss://stream.binance.com:9443/stream?streams=btcusdt@depth20@100ms/btcusdt@aggTrade
+2026-07-14T15:14:33.919508Z  INFO [FEED] binance ws connected
+2026-07-14T15:14:34.265064Z  INFO [CLOB-WS] connected to wss://ws-subscriptions-clob.polymarket.com/ws/market, subscribing: {"assets_ids":["2381901200897683871750487851796678202086447508581633617959019556094026179861","58206740731056949916968665289405292154085445124457662068791983609293347953192"],"type":"market"}
+2026-07-14T15:14:34.265183Z  INFO [FEED] clob market ws connected
+2026-07-14T15:14:34.411381Z  INFO [RTDS] connected to wss://ws-live-data.polymarket.com, subscribing: {"action":"subscribe","subscriptions":[{"filters":"","topic":"crypto_prices_chainlink","type":"*"}]}
+2026-07-14T15:14:34.411489Z  INFO [FEED] rtds connected

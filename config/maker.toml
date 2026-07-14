@@ -1,0 +1,89 @@
+# Market maker — market_making_plan.md §9 parameters.
+
+[general]
+symbol = "BTC"
+strategy = "maker"
+dry_run = false
+log_level = "info"
+clob_host = "https://clob.polymarket.com"
+trade_csv_enabled = true
+trade_csv_dir = "output"
+pnl_log_dir = "output"
+# Pin the engine thread to a CPU core (hard pin on Linux, hint on macOS).
+# pin_core = 3
+# Min interval between order placements per (token, side); SL exempt. 0 = off.
+order_throttle_ms = 200
+# Max simultaneous working orders per token; excess placements are dropped.
+max_orders_per_token = 2
+
+[maker]
+half_spread = 0.04
+min_spread = 0.01
+max_spread = 0.2
+quote_size = 5.4
+quote_refresh_secs = 5.0
+reprice_threshold = 0.002
+max_quote_drift = 0.01
+max_inventory = 20.0
+skew_shift = 0.02
+tte_spread_multiplier = 2.0
+skew_spread_multiplier = 1.5
+momentum_window_secs = 60.0
+momentum_threshold = 0.001
+momentum_spread_multiplier = 2.0
+max_loss_per_market = 5.0
+gross_exposure_limit = 30.0
+pre_expiry_cutoff_secs = 60.0
+# At most one AGGRESSIVE quote amend (bid up / ask down) per this many
+# seconds per quote; passive moves are never limited. 0 = off.
+aggressive_amend_interval_secs = 1.0
+# Units of per-token maker fee added to each side of the spread (net edge).
+fee_spread_factor = 1.0
+# Post-only: never place a quote that would cross the market's far touch.
+maker_only = true
+
+
+# Fair-value pricing. vol_override pins the annualized volatility used in
+# pricing (ignores rolling realized vol AND the Binance historical bootstrap).
+[fair]
+vol_window_secs = 300.0
+default_annual_vol = 0.80
+hist_vol_bars = 20
+vol_override = 0.25
+
+
+# Aggregated spot used for pricing. Default: Binance-only. Set
+# chainlink_enabled = true to pin the Chainlink level and extrapolate it with
+# Binance returns instead. Chainlink is always recorded for the alpha basis
+# term and the tick log.
+[spot]
+binance_enabled = true
+binance_stale_ms = 1500
+chainlink_enabled = false
+
+# Event journal: record every inbound event for deterministic --replay.
+[journal]
+enabled = false
+dir = "output/journal"
+
+[tick]
+inner_tick = 0.01
+outer_tick = 0.001
+inner_lo = 0.04
+inner_hi = 0.96
+
+# 100ms Binance-driven quote-adjustment signal. Weights are UNCALIBRATED
+# placeholders — keep disabled in live configs until calibrated (plan M6).
+[alpha]
+enabled = false
+imbalance_levels = 10
+w_obi = 0.3
+w_tfi = 0.4
+w_basis = 0.3
+basis_scale = 0.0005
+trade_flow_halflife_secs = 5.0
+flow_normalizer = 10.0
+alpha_ret_scale = 0.0005
+max_alpha_shift = 0.05
+stale_ms = 1000
+tick_ms = 100

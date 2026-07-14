@@ -1,0 +1,43 @@
+[package]
+name = "poly_strat3"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+
+[features]
+default = ["live"]
+# Live order execution via the official Polymarket Rust SDK.
+# `cargo build --no-default-features` gives a DryRun-only binary.
+live = ["dep:polymarket_client_sdk_v2", "dep:alloy"]
+
+[dependencies]
+tokio = { version = "1", features = ["rt", "macros", "time", "signal", "sync"] }
+tokio-tungstenite = { version = "0.24", features = ["rustls-tls-webpki-roots"] }
+# Explicit provider install: the SDK's deps pull in aws-lc-rs alongside ring,
+# and rustls refuses to auto-pick when both are present.
+rustls = { version = "0.23", default-features = false, features = ["ring"] }
+futures-util = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+clap = { version = "4", features = ["derive"] }
+libm = "0.2"
+core_affinity = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# Non-blocking log writer: a stalled stdout must never stall the engine.
+tracing-appender = "0.2"
+chrono = "0.4"
+csv = "1"
+polymarket_client_sdk_v2 = { version = "0.6", features = ["clob", "ws", "heartbeats", "tracing", "data"], optional = true }
+# Same alloy line as the SDK — only used to name the concrete signer type.
+alloy = { version = "1.6", default-features = false, features = ["signers", "signer-local"], optional = true }
+
+[profile.release]
+lto = true
+codegen-units = 1
+
+[[test]]
+name = "connectivity"
+required-features = []

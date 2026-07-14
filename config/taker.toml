@@ -1,0 +1,75 @@
+# Directional taker — port of btc_trader.py defaults.
+
+[general]
+symbol = "BTC"
+strategy = "taker"
+dry_run = false
+log_level = "info"
+clob_host = "https://clob.polymarket.com"
+trade_csv_enabled = true
+trade_csv_dir = "output"
+pnl_log_dir = "output"
+# Pin the engine thread to a CPU core (hard pin on Linux, hint on macOS).
+# pin_core = 3
+# Min interval between order placements per (token, side); SL exempt. 0 = off.
+order_throttle_ms = 200
+# Max simultaneous working orders per token; excess placements are dropped.
+max_orders_per_token = 1
+
+[taker]
+order_size = 5.2
+order_price_min = 0.8
+order_price_max = 0.95
+stop_loss_price = 0.4
+take_profit_price = 0.03
+max_position = 6
+trade_sides = ["YES","NO"]
+cooldown_secs = 10.0
+pre_expiry_cutoff_pct = 0.05
+
+# Hourly overrides (UTC hour -> config), mirroring HOURLY_CONFIG in Python.
+[taker.hourly.22]
+trade_sides = ["YES"]
+order_price_min = 0.6
+
+[taker.hourly.23]
+trade_sides = ["NO"]
+order_price_min = 0.6
+
+[taker.hourly.5]
+trade_sides = ["NO"]
+order_price_min = 0.6
+
+
+# Fair-value pricing. vol_override pins the annualized volatility used in
+# pricing (ignores rolling realized vol AND the Binance historical bootstrap).
+[fair]
+vol_window_secs = 300.0
+default_annual_vol = 0.80
+hist_vol_bars = 20
+
+vol_override = 0.35
+
+
+# Aggregated spot used for pricing. Default: Binance-only. Set
+# chainlink_enabled = true to pin the Chainlink level and extrapolate it with
+# Binance returns instead. Chainlink is always recorded for the alpha basis
+# term and the tick log.
+[spot]
+binance_enabled = true
+binance_stale_ms = 1500
+chainlink_enabled = false
+
+# Event journal: record every inbound event for deterministic --replay.
+[journal]
+enabled = true
+dir = "output/journal"
+
+[tick]
+inner_tick = 0.01
+outer_tick = 0.001
+inner_lo = 0.04
+inner_hi = 0.96
+
+[alpha]
+enabled = false
